@@ -1,0 +1,22 @@
+.linha {
+  display: flex;
+
+  .bloco {
+    width: 100px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .borderBottom {
+    border-bottom: 1px solid #000;
+  }
+
+  .borderRight {
+    border-right: 1px solid #000;
+  }
+}
+
+
+
