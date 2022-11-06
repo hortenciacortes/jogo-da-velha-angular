@@ -1,8 +1,8 @@
-<h5>{{ title }}:</h5>
+<h5>{{ title }} :</h5>
 <img
   [src]="player.urlImage"
   alt="Imagem do personagem {{ player.name }}"
   [class.current]="title === 'Jogador atual'"
 />
-<h4>{{ player.name }}</h4>
+<h4>{{ player.name }} - {{player.symbol}}</h4>
 <p *ngIf="title !== 'Jogador atual'">{{ player.points }}</p>

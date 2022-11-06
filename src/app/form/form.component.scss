@@ -23,35 +23,5 @@
     }
   }
 
-  .gamer-scores {
-    width: 100%;
-    display: flex;
-    gap: 30px;
 
-    .game-score {
-      width: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-
-  .currentPlayer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-
-    .info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        width: 60px;
-        border-radius: 50%;
-      }
-    }
-  }
 }

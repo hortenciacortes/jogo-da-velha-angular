@@ -1,3 +1,37 @@
-<app-bloco [border]="'borderBottom'" [line]="1" [players]="players"></app-bloco>
-<app-bloco [border]="'borderBottom'" [line]="2" [players]="players"></app-bloco>
-<app-bloco [line]="3" [players]="players"></app-bloco>
+<div class="gamer-scores">
+
+  <app-game-score
+    [player]="players.player1"
+    [title]="'Jogador 1'"
+    class="game-score"
+    *ngIf="players.player1.urlImage">
+  </app-game-score>
+
+  <app-game-score
+    [player]="players.player2"
+    [title]="'Jogador 2'"
+    class="game-score"
+    *ngIf="players.player2.urlImage">
+  </app-game-score>
+
+</div>
+
+<div *ngIf="players.player1.urlImage && players.player2.urlImage" class="currentPlayer">
+
+  <app-game-score
+    [player]="players.currentPlayer"
+    [title]="'Jogador atual'"
+    class="info"
+    *ngIf="players.currentPlayer.urlImage">
+  </app-game-score>
+
+  <div>
+    <app-bloco [border]="'borderBottom'" [line]="1" [players]="players"></app-bloco>
+    <app-bloco [border]="'borderBottom'" [line]="2" [players]="players"></app-bloco>
+    <app-bloco [line]="3" [players]="players"></app-bloco>
+  </div>
+
+  <p class="message"></p>
+  <button class="button" (click)="handleNewPlay()">Iniciar nova partida</button>
+
+</div>

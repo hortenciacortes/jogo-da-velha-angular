@@ -13,34 +13,6 @@
     <button class="button" (click)="handleJogadores(!players.player1.urlImage ? players.player1.name : players.player2.name)">Enviar</button>
   </div>
 
-  <div class="gamer-scores">
-    <app-game-score
-      [player]="players.player1"
-      [title]="'Jogador 1'"
-      class="game-score"
-      *ngIf="players.player1.urlImage">
-    </app-game-score>
+  <app-jogo [players]="players"></app-jogo>
 
-    <app-game-score
-      [player]="players.player2"
-      [title]="'Jogador 2'"
-      class="game-score"
-      *ngIf="players.player2.urlImage">
-    </app-game-score>
-  </div>
-
-  <div *ngIf="players.player1.urlImage && players.player2.urlImage" class="currentPlayer">
-
-    <app-game-score
-      [player]="players.currentPlayer"
-      [title]="'Jogador atual'"
-      class="info"
-      *ngIf="players.currentPlayer.urlImage">
-    </app-game-score>
-
-    <app-jogo [players]="players"></app-jogo>
-
-    <p class="message"></p>
-    <button class="button" (click)="handleNewPlay()">Iniciar nova partida</button>
-  </div>
 </div>

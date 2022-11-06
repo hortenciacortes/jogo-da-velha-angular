@@ -16,7 +16,7 @@ export class BlocoComponent implements OnInit {
     currentPlayer: {name: '', urlImage: undefined, symbol: '', points: 0}
   };
 
-  validCombinations = [
+  private validCombinations = [
     ['l1c1', 'l1c2', 'l1c3'],
     ['l2c1', 'l2c2', 'l2c3'],
     ['l3c1', 'l3c2', 'l3c3'],
@@ -27,7 +27,7 @@ export class BlocoComponent implements OnInit {
     ['l1c3', 'l2c2', 'l3c1']
   ];
 
-  handleBloco(event: Event) {
+   public handleBloco(event: Event) {
     const element = event.target as HTMLButtonElement;
     if(this.players.currentPlayer.symbol && !element.disabled) {
       element.innerHTML = this.players.currentPlayer.symbol;
@@ -36,13 +36,13 @@ export class BlocoComponent implements OnInit {
     }
   }
 
-  rules() {
+   private rules() {
     const blocos = Array.from(document.querySelectorAll('.bloco')) as HTMLButtonElement[];
     const blocosPlayer1 = blocos.filter(bloco => bloco.innerHTML === this.players.player1.symbol).map(bloco => bloco.id)
     const blocosPlayer2 = blocos.filter(bloco => bloco.innerHTML === this.players.player2.symbol).map(bloco => bloco.id)
 
-    const filterConbinationPlayer1 = this.validCombinations.map(combinations => combinations.map(combination =>  blocosPlayer1.filter(item => combination === item))).map(li => li.filter(y => y.length === 1)).filter(f => f.length === 3);
-    const filterConbinationPlayer2 = this.validCombinations.map(combinations => combinations.map(combination =>  blocosPlayer2.filter(item => combination === item))).map(li => li.filter(y => y.length === 1)).filter(f => f.length === 3);
+    const filterConbinationPlayer1 = this.result(blocosPlayer1);
+    const filterConbinationPlayer2 = this.result(blocosPlayer2);
 
     if (filterConbinationPlayer1.length > 0 || filterConbinationPlayer2.length > 0) {
       filterConbinationPlayer1.length > 0 ? this.players.player1.points++ : this.players.player2.points++;
@@ -60,7 +60,13 @@ export class BlocoComponent implements OnInit {
     }
   }
 
-  theEnd(playerWinner: string) {
+  private result(blocosPlayer: string[]) {
+    return this.validCombinations.map(allCombinations => allCombinations.map(combination => blocosPlayer.filter(item => combination === item)))
+    .map(combinations => combinations.filter(combination => combination.length === 1)).filter(conbination => conbination.length === 3)
+
+  }
+
+  private theEnd(playerWinner: string) {
     const message = document.querySelector('.message') as HTMLElement
     message.innerHTML = playerWinner !== 'empate' ? `O jogador ${playerWinner} é o vencedor` : 'Empate!';
 
